@@ -6,12 +6,12 @@ fn main() {
     let answer = "The letter e";
     loop{
         let mut input = String::new();
+        println!("{}", riddle);
         io::stdin().read_line(&mut input);
+        i += 1;
         if input.trim() == answer {
             println!("Number of trials: {}", i);
             break;
         }
-        println!("{}", riddle);
-        i += 1
     }
 }
