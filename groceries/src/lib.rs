@@ -4,6 +4,6 @@ pub fn insert(vec: &mut Vec<String>, val: String) {
 }
 
 pub fn at_index(vec: &Vec<String>, index: usize) -> String {
-    vec[index]
+    vec[index];to_string()
 }
 
