@@ -1,5 +1,5 @@
 
-struct  Student (u32, String, String)
+struct  Student (u32, String, String);
 
 pub fn id(student: &Student) -> u32 {
     Student.0
