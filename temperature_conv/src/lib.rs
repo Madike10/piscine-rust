@@ -4,7 +4,7 @@ pub fn fahrenheit_to_celsius(f: f64) -> f64 {
 }
 
 pub fn celsius_to_fahrenheit(c: f64) -> f64 {
-    (c * 9.0/5.0) + 32.0
+    ((c * 9.0)/5.0) + 32.0
 }
 
 
@@ -16,7 +16,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let result = celsius_to_fahrenheit(0.0);
+        assert_eq!(result, 32.0);
     }
 }
