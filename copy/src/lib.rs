@@ -1,5 +1,5 @@
 pub fn nbr_function(c: i32) -> (i32, f64, f64) {
-    (c, (c as f64).exp(), (c as f64).ln())
+    (c, (c as f64).exp(), (c.abs() as f64).ln())
 
 }
 
