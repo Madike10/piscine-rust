@@ -27,18 +27,13 @@ pub fn title_case(input: &str) -> String {
     
 pub fn change_case(input: &str) -> String {
     let mut res = String::new();
-    let input_split = input.split(" ");
-    for elem in input_split{
-        let mut temp = String::new();
-        for i in elem.chars() {
-           if i.is_uppercase() {
-               temp.push(i.to_lowercase().next().unwrap());
-           }else{
-               temp.push(i.to_uppercase().next().unwrap());
-           }
+    for elem in input.chars() {
+        if elem.is_uppercase() {
+            res.push(elem.to_lowercase().next().unwrap());
+        }else{
+            res.push(elem.to_uppercase().next().unwrap());
         }
-        res.push_str(&temp);
-        res.push(' ');
+       
     }
     return res;
 
