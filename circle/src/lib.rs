@@ -5,9 +5,9 @@ pub struct Circle {
 }
 
 impl Circle {
-    pub fn new(center: Point, radius: f64) -> Self {
+    pub fn new(x : f64, y : f64, radius: f64) -> Self {
         Circle {
-            center: center,
+            center: Point{x , y},
             radius: radius,
         }
     }
@@ -46,8 +46,7 @@ impl Point {
 
 
 fn main() {
-    let center = Point { x: 500.0, y: 500.0 }; // Assurez-vous que Point est défini quelque part dans votre code
-    let circle = Circle::new(center, 150.0);
+	let circle = Circle::new(500.0, 500.0, 150.0);
 	let circle1 = Circle {
 		center: Point { x: 80.0, y: 115.0 },
 		radius: 30.0,
