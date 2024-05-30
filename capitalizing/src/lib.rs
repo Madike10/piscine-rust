@@ -1,5 +1,8 @@
 pub fn capitalize_first(input: &str) -> String {
-
+    if input.is_empty() {
+        return String::new();
+        
+    }
     let mut res = String::new();
     let mut pos = 0;
     for val in input.chars(){
@@ -42,7 +45,7 @@ pub fn change_case(input: &str) -> String {
         
         
 fn main() {
-    println!("{}", capitalize_first("joe is missing"));
+    println!("{}", capitalize_first(""));
     println!("{}", title_case("jill is leaving A"));
     println!("{}",change_case("heLLo THere"));
 }
