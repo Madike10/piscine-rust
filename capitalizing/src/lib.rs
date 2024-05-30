@@ -20,6 +20,7 @@ pub fn title_case(input: &str) -> String {
         res.push_str(&capitalize_first(elem));
         res.push(' ');
     }
+    res.pop();
     return res;
 
 }
