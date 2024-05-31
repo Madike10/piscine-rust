@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 pub fn mean(list: &Vec<i32>) -> f64 {
     let mut sum = 0;
     for num in list {
