@@ -23,9 +23,9 @@ pub fn mode(list: &Vec<i32>) -> i32 {
         *map.entry(num).or_insert(0) += 1;
     }
     let mut biggest = 0;
-    for (_, value) in map {
-        if value > biggest {
-            biggest = value;
+    for (_, value) in &map {
+        if *value > biggest {
+            biggest = *value;
         }
     }
     for (key, value) in map {
@@ -35,6 +35,7 @@ pub fn mode(list: &Vec<i32>) -> i32 {
     }
     return 0;
 }
+
 
 
 // fn main() {
