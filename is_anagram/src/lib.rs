@@ -1,11 +1,18 @@
 
 pub fn is_anagram(s1: &str, s2: &str) -> bool {
-    let mut s1 = s1.to_lowercase();
-    let mut s2 = s2.to_lowercase();
+    if s1.len() != s2.len(){
+        return false;
+    }
+    
+    let mut s1v :Vec<_> = s1.to_lowercase().chars().collect();
+    let mut s2v :Vec<_> = s2.to_lowercase().chars().collect();
     
     // Convert the Strings to slices of characters and sort them
-    s1.sort_unstable();
-    s2.sort_unstable();
+    s1v.sort();
+    s2v.sort();
     
-    s1 == s2
+    if s1v == s2v {
+        return true;
+    }
+    false
 }
