@@ -2,9 +2,9 @@ use std::collections::HashMap;
 use std::num::ParseFloatError;
 #[derive(Debug, PartialEq, Eq)]
 pub struct Flag {
-    short_hand: String,
-    long_hand: String,
-    desc: String,
+  pub  short_hand: String,
+  pub  long_hand: String,
+  pub  desc: String,
 }
 #[warn(dead_code)]
 impl Flag {
