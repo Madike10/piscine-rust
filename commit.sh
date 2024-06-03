@@ -21,5 +21,5 @@ git branch -m master main
 # Pousser la branche main sur GitHub
 git push github main
 
-# Renommer la branche master localement (si nécessaire)
+# Renommer la branche master localement 
 git branch -m master
