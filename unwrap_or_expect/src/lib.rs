@@ -13,13 +13,10 @@ pub fn fetch_data(server: Result<String, String>, security_level: Security) -> S
         Security::Unknown => server.unwrap(),
         Security::High  =>  match server {
             Ok(url) => url,
-            Err(_)  => panic!("ERROR: program stops."),
+            Err(_)  => panic!("ERROR: program stops"),
         },
-        Security::Medium => server.expect("WARNING: check the server."),
-        Security::Low => match server {
-            Ok(url) => url,
-            Err(_)  => panic!("Not found: [SERVER_URL]."),
-        },
+        Security::Medium => server.unwrap_or("WARNING: check the server".to_string()),
+        Security::Low => server.unwrap_or_else(|url| format!("Not found: {url}")),
         Security::BlockServer => match server {
             Ok(url) => panic!("{}", {url}),
             Err(_) => String::new(),
