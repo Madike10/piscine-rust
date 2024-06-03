@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use std::num::ParseFloatError;
 #[derive(Debug, PartialEq, Eq)]
-struct Flag {
+pub struct Flag {
     short_hand: String,
     long_hand: String,
     desc: String,
