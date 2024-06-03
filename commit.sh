@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Ajouter les dépôts distants
-git remote add origin https://learn.zone01dakar.sn/git/ymadike/piscine-rust
-git remote add github https://github.com/Madike10/piscine-rust
+# git remote add origin https://learn.zone01dakar.sn/git/ymadike/piscine-rust
+# git remote add github https://github.com/Madike10/piscine-rust
 
 # Ajouter tous les fichiers au commit
 git add .
