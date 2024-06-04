@@ -59,7 +59,7 @@ impl Form {
             return Err(FormError::new(
                 "password".to_string(),
                 self.password.clone(),
-                "must be at least 8 characters".to_string(),
+                "At least 8 characters".to_string(),
             ));
         }
 
