@@ -65,7 +65,7 @@ impl Form {
         if form_output.is_empty() {
             Ok(Vec::new())
         } else {
-            Err(form_output.remove(0)) // Assuming you want to return the first error encountered
+            Ok(form_output)
         }
     }
 }
