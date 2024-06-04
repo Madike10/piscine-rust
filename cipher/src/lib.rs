@@ -1,14 +1,14 @@
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct CipherError {
     // expected public fields
-   pub boolean: bool,
-   pub error: String, 
+   pub validation: bool,
+   pub expected: String, 
 }
 impl CipherError {
     pub fn new(validation: bool, expected: String) -> CipherError {
         CipherError{
-            boolean : validation,
-            error: expected,
+            validation,
+            expected,
         }
     }
 }
@@ -33,13 +33,13 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
         if res == ciphered {
             return Some(Ok(true));
         }
-       return Some(Err(CipherError::new(false, res)));
+    Some(Err(CipherError::new(false, res)))
     }
 
 
-    fn main() {
-        println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
-        println!("{:?}", cipher("1Hello 2world!", "svool"));
-        println!("{:?}", cipher("", "svool"));
-    }
+    // fn main() {
+    //     println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
+    //     println!("{:?}", cipher("1Hello 2world!", "svool"));
+    //     println!("{:?}", cipher("", "svool"));
+    // }
     
