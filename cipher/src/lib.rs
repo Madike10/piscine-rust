@@ -1,14 +1,14 @@
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct CipherError {
     // expected public fields
-   pub validation: bool,
-   pub expected: String, 
+   pub boolean: bool,
+   pub error: String, 
 }
 impl CipherError {
     pub fn new(validation: bool, expected: String) -> CipherError {
         CipherError{
-            validation,
-            expected,
+            boolean : validation,
+            error: expected,
         }
     }
 }
@@ -18,13 +18,13 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
         return None;
     }
     for i in original.chars(){
-        let val = i as u8;
-            if val.is_ascii_lowercase(){
-                let cip = (122 - (val-97)) as char;
-                res.push( cip);
-            } else if val.is_ascii_uppercase(){
-                let cip = (90 - (val-65)) as char;
-                res.push( cip );
+            let mut _cipher : u8 ;
+            if i.is_ascii_lowercase(){
+                _cipher = 122 - ((i as u8)-97);
+                res.push( _cipher as char);
+            } else if i.is_ascii_uppercase(){
+                _cipher = 90 - ((i as u8)-65);
+                res.push( _cipher as char);
             }else{
                 res.push(i);
             }
@@ -33,15 +33,13 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
         if res == ciphered {
             return Some(Ok(true));
         }
-    Some(Err(CipherError::new(false, res)))
+       return Some(Err(CipherError::new(false, res)));
     }
 
 
-    // use cipher::*;
-
-    // fn main() {
-    //     println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
-    //     println!("{:?}", cipher("1Hello 2world!", "svool"));
-    //     println!("{:?}", cipher("", "svool"));
-    // }
+    fn main() {
+        println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
+        println!("{:?}", cipher("1Hello 2world!", "svool"));
+        println!("{:?}", cipher("", "svool"));
+    }
     
