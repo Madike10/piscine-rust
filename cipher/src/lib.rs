@@ -19,10 +19,10 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
     }
     for i in original.chars(){
         let val = i as u8;
-            if i.is_ascii_uppercase(){
+            if val.is_ascii_uppercase(){
                 let cip = (122 - (val-97)) as char;
                 res.push( cip);
-            } else if i.is_ascii_lowercase(){
+            } else if val.is_ascii_lowercase(){
                 let cip = (90 - (val-65)) as char;
                 res.push( cip );
             }else{
@@ -37,5 +37,11 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
     }
 
 
-   
+    // use cipher::*;
+
+    // fn main() {
+    //     println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
+    //     println!("{:?}", cipher("1Hello 2world!", "svool"));
+    //     println!("{:?}", cipher("", "svool"));
+    // }
     
