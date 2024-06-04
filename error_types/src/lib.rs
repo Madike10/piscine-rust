@@ -44,30 +44,30 @@ impl Form {
         }
     }
 
-    pub fn validate(&self) -> Result<(), Vec<FormError>> {
-        let mut form_output = Vec::new();
+    pub fn validate(&self) -> Result<Vec<&str>, FormError>{
+        // let mut form_output = Vec::new();
 
         if self.first_name.is_empty() {
-            form_output.push(FormError::new(
+            return Err(FormError::new(
                 "first_name".to_string(),
                 self.first_name.clone(),
                 "No user name".to_string(),
             ));
         }
 
-        if self.password.len() < 8 {
-            form_output.push(FormError::new(
+        else if self.password.len() < 8 {
+            return Err(FormError::new(
                 "password".to_string(),
                 self.password.clone(),
                 "must be at least 8 characters".to_string(),
             ));
         }
 
-        if !self.password.chars().any(|c| c.is_digit(10))
+        else if !self.password.chars().any(|c| c.is_digit(10))
             || !self.password.chars().any(|c| c.is_alphabetic())
             || !self.password.chars().any(|c| !c.is_alphanumeric())
         {
-            form_output.push(FormError::new(
+            return  Err(FormError::new(
                 "password".to_string(),
                 self.password.clone(),
                 "Combination of different ASCII character types (numbers, letters and none alphanumeric characters)"
@@ -75,10 +75,11 @@ impl Form {
             ));
         }
 
-        if form_output.is_empty() {
-            Ok(())
-        } else {
-            Err(form_output)
-        }
+        else  {
+            let mut res = Vec::new();
+            res.push("Valid first name");
+            res.push("Valid password");
+            Ok(res)
+        } 
     }
 }
