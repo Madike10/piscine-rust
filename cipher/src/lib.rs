@@ -37,9 +37,5 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
     }
 
 
-    fn main() {
-        println!("{:?}", cipher("1Hello 2world!", "1Svool 2dliow!"));
-        println!("{:?}", cipher("1Hello 2world!", "svool"));
-        println!("{:?}", cipher("", "svool"));
-    }
+   
     
