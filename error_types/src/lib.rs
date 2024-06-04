@@ -10,7 +10,7 @@ pub struct Form {
     pub password: String,
 }
 
-#[derive(Debug)]
+#[derive(Debug, PartialEq, Eq)]
 pub struct FormError {
     pub form_values: (String, String),
     pub date: String,
