@@ -1,6 +1,6 @@
 pub use chrono::{Utc, NaiveDate};
 
-// this will be the structure that wil handle the errors
+// this will be the structure that will handle the errors
 #[derive(Debug, Eq, PartialEq)]
 pub struct Form {
     pub first_name: String,
@@ -16,20 +16,26 @@ pub struct FormError {
     pub date: String,
     pub err: String,
 }
+
 impl FormError {
     pub fn new(field_name: String, field_value: String, err: String) -> FormError {
-        FormError{
-            form_values: (field_name,  field_value),
-            date : Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
+        FormError {
+            form_values: (field_name, field_value),
+            date: Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
             err,
         }
     }
 }
 
-
 impl Form {
-    pub fn new(first_name: String, last_name: String, birth: NaiveDate, birth_location: String, password: String,) -> Form {
-        Form{
+    pub fn new(
+        first_name: String,
+        last_name: String,
+        birth: NaiveDate,
+        birth_location: String,
+        password: String,
+    ) -> Form {
+        Form {
             first_name,
             last_name,
             birth,
@@ -37,36 +43,42 @@ impl Form {
             password,
         }
     }
-    
-    pub fn validate(&self) -> Result<Vec<FormError>, FormError> {
+
+    pub fn validate(&self) -> Result<(), Vec<FormError>> {
         let mut form_output = Vec::new();
+
         if self.first_name.is_empty() {
-            form_output.push(FormError{
-                form_values: ("first_name".to_string(), self.first_name.clone()),
-                date: Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-                err: "No user name".to_string(),
-            });
+            form_output.push(FormError::new(
+                "first_name".to_string(),
+                self.first_name.clone(),
+                "No user name".to_string(),
+            ));
         }
+
         if self.password.len() < 8 {
-            form_output.push(FormError {
-                form_values: ("password".to_string(), self.password.clone()),
-                date: Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-                err: "must be at least 8 characters".to_string(),
-            });
+            form_output.push(FormError::new(
+                "password".to_string(),
+                self.password.clone(),
+                "must be at least 8 characters".to_string(),
+            ));
         }
-        if!self.password.chars().any(|c| c.is_digit(10)) ||!self.password.chars().any(|c| c.is_alphabetic()) ||!self.password.chars().any(|c|!c.is_alphanumeric()) {
-            form_output.push(FormError {
-                form_values: ("password".to_string(), self.password.clone()),
-                date: Utc::now().format("%Y-%m-%d %H:%M:%S").to_string(),
-                err: "Combination of different ASCII character types (numbers, letters and none alphanumeric characters)".to_string(),
-            });
+
+        if !self.password.chars().any(|c| c.is_digit(10))
+            || !self.password.chars().any(|c| c.is_alphabetic())
+            || !self.password.chars().any(|c| !c.is_alphanumeric())
+        {
+            form_output.push(FormError::new(
+                "password".to_string(),
+                self.password.clone(),
+                "Combination of different ASCII character types (numbers, letters and none alphanumeric characters)"
+                    .to_string(),
+            ));
         }
-    
+
         if form_output.is_empty() {
-            Ok(Vec::new())
+            Ok(())
         } else {
-            Ok(form_output)
+            Err(form_output)
         }
     }
 }
-
