@@ -19,10 +19,10 @@ pub fn cipher(original: &str, ciphered: &str) -> Option<Result<bool, CipherError
     }
     for i in original.chars(){
         let val = i as u8;
-            if val.is_ascii_uppercase(){
+            if val.is_ascii_lowercase(){
                 let cip = (122 - (val-97)) as char;
                 res.push( cip);
-            } else if val.is_ascii_lowercase(){
+            } else if val.is_ascii_uppercase(){
                 let cip = (90 - (val-65)) as char;
                 res.push( cip );
             }else{
