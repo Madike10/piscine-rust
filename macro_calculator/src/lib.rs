@@ -3,7 +3,7 @@ extern crate json;
 pub struct Food {
     //expected public fields
     pub name: String,
-    pub calories: Vec<String>,
+    pub calories: [String; 2],
     pub proteins: f64,
     pub fats: f64,
     pub carbs: f64,
