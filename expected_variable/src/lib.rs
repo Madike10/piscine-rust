@@ -20,6 +20,7 @@ fn edit_distance(a: &str, b: &str) -> usize {
                 cj.min(nw).min(costs[j + 1]) + 1
             };
         }
+        costs[b.len()] = nw;
     }
 
     costs[b.len()]
@@ -51,7 +52,15 @@ fn is_camel_case(s: &str) -> bool {
 
 // Check if a string is in snake case
 fn is_snake_case(s: &str) -> bool {
-    s.split('_').all(|part| part.chars().all(|c| c.is_lowercase()))
+    let mut has_underscore = false;
+    for c in s.chars() {
+        if c == '_' {
+            has_underscore = true;
+        } else if !c.is_lowercase() {
+            return false; // Contains non-lowercase alphabetic characters
+        }
+    }
+    has_underscore
 }
 
 // Main function to calculate expected variable similarity percentage
