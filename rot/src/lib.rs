@@ -6,16 +6,20 @@ pub fn rotate(input: &str, key: i8) -> String {
             if key < 0 {
                 _cipher = ((i as i8 - 65 + (26 - key)) % 26) + 65;
                 res.push((_cipher as u8)as char)
-            }
+            }else{
+
                 _cipher = ((i as i8 - 65 + key) % 26) + 65;
                 res.push((_cipher as u8)as char);
+            }
         }else if i.is_ascii_lowercase(){
             if key < 0 {
                 _cipher = ((i as i8 - 97 + (26 - key)) % 26) + 97;
                 res.push((_cipher as u8)as char);
+            }else{
+
+                _cipher = ((i as i8 - 97 + key) % 26) + 97;
+                res.push((_cipher as u8)as char);
             }
-            _cipher = ((i as i8 - 97 + key) % 26) + 97;
-            res.push((_cipher as u8)as char);
         }else{
             res.push(i);
         }
