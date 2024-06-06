@@ -1,13 +1,16 @@
 pub fn num_to_ordinal(x: u32) -> String {
-  let mut res = String::new();
-  match x {
-    1 => res.push_str("1st"),
-    2 => res.push_str("2nd"),
-    3 => res.push_str("3rd"),
-    11 => res.push_str("11th"),
-    12 => res.push_str("12th"),
-    13 => res.push_str("13th"),
-    _ => res.push_str(&format!("{}th", x)),
+  let mut res = x.to_string();
+  if res == "11".to_string() || res == "12".to_string() || res == "13".to_string(){
+    res.push_str("th");
+    return res;
+  }
+  match res.chars().last(){
+    Some('1') => res.push_str("st"),
+    Some('2') => res.push_str("nd"),
+    Some('3') => res.push_str("rd"),
+    
+    _ => res.push_str("th"),
+
   }
   return res;
 }
