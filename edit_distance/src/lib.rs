@@ -25,17 +25,6 @@ pub fn edit_distance(source: &str, target: &str) -> usize {
 }
 
 
-fn main() {
-	let source = "alignment";
-	let target = "assignment";
-	println!(
-		"It's necessary to make {} change(s) to {}, to get {}",
-		edit_distance(source, target),
-		source,
-		target
-	);
-}
-
 // And its output:
 
 
