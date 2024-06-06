@@ -2,6 +2,6 @@
 name = "expected_variable"
 version = "0.1.0"
 edition = "2021"
+
 [dependencies]
-case = "1.0.0"
-edit_distance = { path = "../edit_distance" }
+case = "1.0"
