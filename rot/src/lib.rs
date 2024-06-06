@@ -4,7 +4,7 @@ pub fn rotate(input: &str, key: i8) -> String {
         let mut  _cipher : i8;
         if i.is_ascii_uppercase() {
             if key < 0 {
-                _cipher = ((i as i8 - (65 + (26 - key))) % 26) + 65;
+                _cipher = ((i as i8 - 65 + (26 + key)) % 26) + 65;
                 res.push((_cipher as u8)as char)
             }else{
 
@@ -13,7 +13,7 @@ pub fn rotate(input: &str, key: i8) -> String {
             }
         }else if i.is_ascii_lowercase(){
             if key < 0 {
-                _cipher = ((i as i8 - (97 + (26 - key))) % 26) + 97;
+                _cipher = ((i as i8 - 97 + (26 + key)) % 26) + 97;
                 res.push((_cipher as u8)as char);
             }else{
 
@@ -50,3 +50,15 @@ fn main() {
     println!("Your cypher wil be: {}", rotate("Testing", -14));
     println!("The letter \"a\" becomes: {}", rotate("a", -1));
 }
+// $ cargo run
+// The letter "a" becomes: a
+// The letter "m" becomes: m
+// The letter "m" becomes: z
+// The letter "a" becomes: p
+// The word "MISS" becomes: RNXX
+// The decoded message is: The five boxing wizards jump quickly.
+// The decoded message is: Ryg aesmuvi nkpd tewzsxq jolbkc foh
+// Your cypher wil be: Xiwxmrk amxl ryqfivw 1 2 3
+// Your cypher wil be: Fqefuzs
+// The letter "a" becomes: z
+// $
