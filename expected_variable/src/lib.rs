@@ -9,21 +9,25 @@ fn edit_distance(a: &str, b: &str) -> usize {
     }
 
     for (i, ca) in a.chars().enumerate() {
+        let mut last_value = i;
         costs[0] = i + 1;
-        let mut nw = i;
         for (j, cb) in b.chars().enumerate() {
-            let cj = costs[j];
-            costs[j] = nw;
-            nw = if ca == cb {
-                cj
+            let new_value = if ca == cb {
+                last_value
             } else {
-                cj.min(nw).min(costs[j + 1]) + 1
+                min(last_value + 1, min(costs[j + 1] + 1, costs[j] + 1))
             };
+            last_value = costs[j + 1];
+            costs[j + 1] = new_value;
         }
-        costs[b.len()] = nw;
     }
 
     costs[b.len()]
+}
+
+// Utility function to get the minimum of three values
+fn min(a: usize, b: usize, c: usize) -> usize {
+    a.min(b).min(c)
 }
 
 // Check if a string is in camel case
@@ -52,15 +56,7 @@ fn is_camel_case(s: &str) -> bool {
 
 // Check if a string is in snake case
 fn is_snake_case(s: &str) -> bool {
-    let mut has_underscore = false;
-    for c in s.chars() {
-        if c == '_' {
-            has_underscore = true;
-        } else if !c.is_lowercase() {
-            return false; // Contains non-lowercase alphabetic characters
-        }
-    }
-    has_underscore
+    s.split('_').all(|part| part.chars().all(|c| c.is_lowercase()))
 }
 
 // Main function to calculate expected variable similarity percentage
