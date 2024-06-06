@@ -1,5 +1,6 @@
 use std::cmp::max;
 
+
 // Helper function to calculate the edit distance
 fn edit_distance(a: &str, b: &str) -> usize {
     let mut costs = vec![0; b.len() + 1];
@@ -27,31 +28,12 @@ fn edit_distance(a: &str, b: &str) -> usize {
 
 // Check if a string is in camel case
 fn is_camel_case(s: &str) -> bool {
-    let mut has_lower = false;
-    let mut has_upper = false;
-    let mut prev_is_upper = false;
-
-    for c in s.chars() {
-        if c.is_uppercase() {
-            has_upper = true;
-            if prev_is_upper {
-                return false; // Two consecutive uppercase letters are not allowed
-            }
-            prev_is_upper = true;
-        } else if c.is_lowercase() {
-            has_lower = true;
-            prev_is_upper = false;
-        } else {
-            return false; // Not a letter
-        }
-    }
-
-    has_lower && has_upper
+    s != s.to_lowercase() && s != s.to_uppercase() && !s.contains('_')
 }
 
 // Check if a string is in snake case
 fn is_snake_case(s: &str) -> bool {
-    s.split('_').all(|part| part.chars().all(|c| c.is_lowercase()))
+    s.chars().all(|c| c.is_lowercase() || c == '_') && s.contains('_')
 }
 
 // Main function to calculate expected variable similarity percentage
