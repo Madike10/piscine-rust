@@ -3,7 +3,7 @@ pub struct WorkEnvironment {
     pub grade: Link,
 }
 
-pub type Link = Option<Box::<Worker>>
+pub type Link = Option<Box<Worker>>;
 
 #[derive(Debug)]
 pub struct Worker {
@@ -23,13 +23,13 @@ impl WorkEnvironment {
             role,
             name,
             next : self.grade.take(),
-        })
-        self.grade = Some(b)
+        });
+        self.grade = Some(b);
 
     }
     pub fn remove_worker(&mut self) -> Option<String> {
         if let Some(Worker) == self.grade.take(){
-            self.grade == Worker.next
+            self.grade = Worker.next
         Some(Worker.next)
         }else{
             None
