@@ -2,8 +2,7 @@ pub fn transform_and_save_on_heap(s: String) -> Box<Vec<u32>> {
     let mut v: Vec<u32> = Vec::new();
     for i in s.split_whitespace() {
         if i.ends_with("k")  {
-            let value = i.trim_end_matches("k").parse::<f32>().unwrap_or(0.0);
-            v.push(value as u32 * 1000);
+            let value = i.trim_end_matches("k").parse::<f32>().unwrap_or(0.0);            v.push((value  * 1000.0) as u32);
         } else {
             let value = i.parse::<f32>().unwrap_or(0.0);
             v.push(value as u32);
