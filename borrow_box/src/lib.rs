@@ -20,7 +20,7 @@ impl GameSession {
     pub fn read_winner(&self) -> (String, u16) {
         if self.p1.1 == self.p2.1{
             ("Same score! tied".to_string(), self.p1.1)
-        }else if self.p1.1 == self.p2.1{
+        }else if self.p1.1 > self.p2.1{
             (self.p1.0.clone(), self.p1.1)
         }else{
             (self.p2.0.clone(), self.p2.1)
@@ -31,7 +31,7 @@ impl GameSession {
         if self.p1.1 + self.p2.1 < self.nb_games{
             if self.p1.0 == user_name && self.p1.1 < (self.nb_games / 2 + 1 ){
                 self.p1.1 += 1
-            } else if self.p2.0 == user_name && self.p1.1 < (self.nb_games / 2 + 1 ){
+            } else if self.p2.0 == user_name && self.p2.1 < (self.nb_games / 2 + 1 ){
                 self.p2.1 += 1
             }
         }
