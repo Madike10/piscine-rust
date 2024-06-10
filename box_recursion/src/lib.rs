@@ -28,9 +28,9 @@ impl WorkEnvironment {
 
     }
     pub fn remove_worker(&mut self) -> Option<String> {
-        if let Some(Worker) == self.grade.take(){
-            self.grade = Worker.next;
-             Some(Worker.name) 
+        if let Some(worker) = self.grade.take(){
+            self.grade = worker.next;
+             Some(worker.name) 
         }else{
             None
         }
@@ -40,4 +40,21 @@ impl WorkEnvironment {
             (w.name.clone(), w.role.clone())
         })
     }
+}
+fn main() {
+    let mut list = WorkEnvironment::new();
+    list.add_worker(String::from("CEO"), String::from("Marie"));
+    list.add_worker(String::from("Manager"), String::from("Monica"));
+    list.add_worker(String::from("Normal Worker"), String::from("Ana"));
+    list.add_worker(String::from("Normal Worker"), String::from("Alice"));
+    println!("{:#?}", list);
+
+    println!("{:?}", list.last_worker());
+
+    list.remove_worker();
+    list.remove_worker();
+    list.remove_worker();
+    println!("{:?}", list);
+    list.remove_worker();
+    println!("{:?}", list);
 }
