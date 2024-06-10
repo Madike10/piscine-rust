@@ -29,8 +29,8 @@ impl WorkEnvironment {
     }
     pub fn remove_worker(&mut self) -> Option<String> {
         if let Some(Worker) == self.grade.take(){
-            self.grade = Worker.next
-        Some(Worker.next)
+            self.grade = Worker.next;
+             Some(Worker.name) 
         }else{
             None
         }
