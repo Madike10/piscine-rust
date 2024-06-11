@@ -23,7 +23,7 @@ use std::{cell::RefCell, rc::Rc};
             let p = (Rc::strong_count(value) * 100) / self.max;
             if p >= 100 {
                 self.logger.error("Error: you are over your quota!");
-            }else if p >= 70 && p < 100 {
+            }else if p >= 70  {
                 self.logger.warning(&format!("Warning: you have used up over {}% of your quota! Proceeds with precaution", p));
             }
 
