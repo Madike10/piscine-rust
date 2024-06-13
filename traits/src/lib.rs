@@ -28,7 +28,7 @@ impl Player  {
 impl fmt::Display for Player {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
       let first_lines = format!("{}", self.name);
-      let second_line =   format!("Strength: {}, Score: {}, money: {}", self.strength, self.score, self.money);
+      let second_line =   format!("Strength: {}, Score: {}, Money: {}", self.strength, self.score, self.money);
       let third_line = format!("weapons: {:?}", self.weapons);
     write!(f, "{}\n{}\n{}", first_lines, second_line, third_line)
     }
