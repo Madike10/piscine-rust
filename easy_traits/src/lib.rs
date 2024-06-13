@@ -17,8 +17,7 @@ impl AppendStr for StringValue {
          self.clone()    
     }
     fn append_number(&mut self, nb_to_append: f64) -> Self{
-        let nb_to_append_str = nb_to_append.to_string();
-        self.value.push_str(&nb_to_append_str);
+        self.value.push_str(&nb_to_append.to_string());
         self.clone()
     }
     fn remove_punctuation_marks(&mut self) -> Self{
@@ -36,7 +35,7 @@ fn main() {
     };
     println!("Before append: {}", str_aux.value);
 
-    str_aux.append_str(String::from(" there!"));
+    str_aux.append_number(2.0);
     println!("After append: {}", str_aux.value);
 
     str_aux.remove_punctuation_marks();
