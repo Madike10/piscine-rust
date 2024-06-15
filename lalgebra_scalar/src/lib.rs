@@ -1,47 +1,82 @@
-use std::ops::Add;
+use std::ops::{Add, Div, Mul, Sub};
 
-#[derive(Debug, Clone, Eq, PartialEq)]
-pub struct Vector<T: Scalar>(pub Vec<T>);
-
-pub trait Scalar: Add<Output = Self> + Clone {}
-
-impl<T> Scalar for T where T: Add<Output = Self> + Clone {}
-
-impl<T> Add for Vector<T>
-where
-    T: Scalar<Output = T>,
+pub trait Scalar:
+    Sized
+    + Add<Self, Output = Self>
+    + Sub<Self, Output = Self>
+    + Mul<Self, Output = Self>
+    + Div<Self, Output = Self>
+    + Copy
 {
-    type Output = Option<Vector<T>>;
+    type Item;
+    fn zero() -> Self::Item;
+    fn one() -> Self::Item;
+}
 
-    fn add(self, rhs: Self) -> Self::Output {
-        if self.0.len() != rhs.0.len() {
-            return None;
-        }
-        let sum: Vec<T> = self
-            .0
-            .iter()
-            .zip(rhs.0.iter())
-            .map(|(&ref a, &ref b)| a.clone() + b.clone())
-            .collect();
-        Some(Vector(sum))
+impl Scalar for u32 {
+    type Item = u32;
+
+    fn zero() -> Self::Item {
+        0
+    }
+
+    fn one() -> Self::Item {
+        1
+    }
+}
+impl Scalar for u64 {
+    type Item = u64;
+
+    fn zero() -> Self::Item {
+        0
+    }
+
+    fn one() -> Self::Item {
+        1
+    }
+}
+impl Scalar for i32 {
+    type Item = i32;
+
+    fn zero() -> Self::Item {
+        0
+    }
+
+    fn one() -> Self::Item {
+        1
+    }
+}
+impl Scalar for i64 {
+    type Item = i64;
+
+    fn zero() -> Self::Item {
+        0
+    }
+
+    fn one() -> Self::Item {
+        1
+    }
+}
+impl Scalar for f32 {
+    type Item = f32;
+
+    fn zero() -> Self::Item {
+        0.0
+    }
+
+    fn one() -> Self::Item {
+        1.0
     }
 }
 
-impl<T: Scalar + std::ops::Mul + std::iter::Sum<<T as std::ops::Mul>::Output>> Vector<T> {
-    pub fn new() -> Self {
-        Vector { 0: Vec::new() }
+impl Scalar for f64 {
+    type Item = f64;
+
+    fn zero() -> Self::Item {
+        0.0
     }
 
-    pub fn dot(&self, other: &Self) -> Option<T> {
-        if self.0.len() != other.0.len() {
-            return None;
-        }
-        let dot: T = self
-            .0
-            .iter()
-            .zip(other.0.iter())
-            .map(|(&ref a, &ref b)| a.clone() * b.clone())
-            .sum();
-        Some(dot)
+    fn one() -> Self::Item {
+        1.0
     }
 }
