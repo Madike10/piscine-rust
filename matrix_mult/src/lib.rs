@@ -6,7 +6,7 @@ impl<T: Clone> Matrix<T> {
 
     pub fn number_of_cols(&self) -> usize { 
         println!("{}", self.0.len());
-        self.0[0].len() // This will return the number of columns in the matrix
+        self.0[0].len() 
     }
 
     pub fn number_of_rows(&self) -> usize {
