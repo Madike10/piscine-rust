@@ -1,11 +1,9 @@
+// Using closures and iterators create a function, that returns the first 50 even numbers squared in a Vec<i32>.
 fn first_fifty_even_square() -> Vec<i32> {
-    let mut result: Vec<i32> = Vec::new();
-    for i in 0..50 {
-        println!("{}", i);
-        result.push(i * i * 2);
-    }
-    result
-
+    (0..100)
+       .filter(|x| x % 2 == 0)
+       .map(|x| x * x)
+       .collect()
 }
 
 fn main() {
