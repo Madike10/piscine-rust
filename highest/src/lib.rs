@@ -21,17 +21,7 @@ impl<'a> Numbers<'a> {
     }
     // Highest_Three: which returns a Vec<u32> with the three highest numbers.
     pub fn highest_three(&self) -> Vec<u32> {
-        self.numbers
-           .iter()
-           .copied()
-           .collect::<Vec<u32>>()
-           .into_iter()
-           .rev()
-           .take(3)
-           .collect::<Vec<u32>>()
-           .into_iter()
-           .rev()
-           .collect::<Vec<u32>>()
+        self.numbers.to_vec().into_iter().rev().take(3).collect()
     }
 }
 
