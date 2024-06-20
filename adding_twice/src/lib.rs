@@ -2,10 +2,11 @@
 pub fn add_curry(base: i32) -> impl Fn(i32) -> i32 {
     move |x: i32| base + x
 }
-pub fn twice<F>(F: impl Fn(i32) -> i32) -> impl Fn(i32) -> i32 {
-    move |x: i32| F(F(x))
-}
+// Add this to your lib.rs file in the adding_twice crate
 
+pub fn twice<F: Fn(i32) -> i32>(f: F) -> impl Fn(i32) -> i32 {
+    move |x: i32| f(f(x))
+}
 fn main() {
     let add10 = add_curry(10);
     let value = twice(add10);
