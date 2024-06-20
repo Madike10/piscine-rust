@@ -1,19 +1,22 @@
 extern crate roman_numbers;
 pub use roman_numbers::{RomanDigit, RomanNumber};
+
 pub struct MyRomanNumber(RomanNumber);
+
 impl Iterator for MyRomanNumber {
     type Item = RomanNumber;
+
     fn next(&mut self) -> Option<Self::Item> {
-        // Remplacer reduce par fold pour éviter les problèmes avec les types d'agrégation
         let next_value = self
             .0
-             .0
+            .0
             .iter()
             .fold(0, |acc, x| acc + get_decimal_equivalent(x));
         self.0 = RomanNumber::from(next_value);
         Some(self.0.clone())
     }
 }
+
 pub fn get_decimal_equivalent(roman_digit: &RomanDigit) -> u32 {
     match roman_digit {
         RomanDigit::I => 1,
@@ -32,10 +35,3 @@ pub fn get_decimal_equivalent(roman_digit: &RomanDigit) -> u32 {
         RomanDigit::Nulla => 0,
     }
 }
-
-// fn main() {
-// 	let mut number = RomanNumber::from(15);
-
-// 	println!("{:?}", number);
-// 	println!("{:?}", number.next());
-// }
