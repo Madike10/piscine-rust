@@ -3,15 +3,14 @@
 
 // Your macro should accept both leading and non leading commas syntax to be more flexible in terms of coding style and reflect the language general style.
 
+#[macro_export]
+macro_rules ! hash_map {
+( $ ( $ key: expr => $ val: expr ), * $ (, ) ?) => { {
 use std::collections::HashMap;
-macro_rules! hash_map {
-    ($($key:expr => $value:expr),*) => {
-        {
-            let mut map = ::std::collections::HashMap::new();
-            $(map.insert($key, $value);)*
-            map
-        }
-    };
+let mut map = HashMap::new();
+$ ( map.insert( $ key, $ val); ) *
+map
+} };
 }
 
 // fn main() {
