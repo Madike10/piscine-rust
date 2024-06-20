@@ -1,24 +1,21 @@
 #[derive(Copy, Clone)]
 pub struct Collatz {
-   pub v: u64,
+    pub v: u64,
 }
 
 impl Iterator for Collatz {
-    type Item = u64;
-
+    type Item = Collatz;
     fn next(&mut self) -> Option<Self::Item> {
-        if self.v == 1  || self.v == 0 {
-            return None;
-        }
-        if self.v % 2 == 0 {
-            self.v = self.v / 2;
+        if self.v == 1 || self.v == 0 {
+            None
         } else {
-            self.v = 3 * self.v + 1;
-        }
-        if self.v == 1 {
-            Some(1)
-        } else {
-            Some(self.v)
+            if self.v % 2 == 0 {
+                self.v /= 2;
+                Some(Collatz::new(self.v * 2))
+            } else {
+                self.v = 3 * self.v + 1;
+                Some(Collatz::new((self.v - 1) / 3))
+            }
         }
     }
 }
@@ -38,10 +35,10 @@ pub fn collatz(n: u64) -> usize {
     count // Including the starting number in the count
 }
 
+// use iterators::Collatz;
+// use iterators::*;
 
 fn main() {
-    println!("{:?}", collatz(0));
-    println!("{:?}", collatz(1));
     println!("{:?}", collatz(4));
     println!("{:?}", collatz(5));
     println!("{:?}", collatz(6));
