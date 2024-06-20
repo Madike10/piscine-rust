@@ -4,8 +4,8 @@ pub struct Numbers<'a> {
 }
 
 impl<'a> Numbers<'a> {
-    pub fn new(numbers: &'a[u32]) -> Self {
-        Numbers{ numbers }
+    pub fn new(numbers: &'a [u32]) -> Self {
+        Numbers { numbers }
     }
     // List: which returns an array with every number in the struct.
     pub fn list(&self) -> &[u32] {
@@ -21,10 +21,13 @@ impl<'a> Numbers<'a> {
     }
     // Highest_Three: which returns a Vec<u32> with the three highest numbers.
     pub fn highest_three(&self) -> Vec<u32> {
-        self.numbers.to_vec().into_iter().rev().take(3).collect()
+        let mut numbers_vec = self.numbers.to_vec();
+        numbers_vec.sort_unstable_by(|a, b| b.cmp(a));
+        let top_three: Vec<u32> = numbers_vec.into_iter().take(3).collect();
+
+        top_three
     }
 }
-
 
 fn main() {
     let expected = [30, 500, 20, 70];
