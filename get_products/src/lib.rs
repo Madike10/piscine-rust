@@ -13,7 +13,7 @@
 // Expected functions
 
 pub fn get_products(arr: Vec<usize>) -> Vec<usize> {
-    let mut result = vec[];
+    let mut result = Vec::new();
     let total_product: usize = arr.iter().product();
     for &element in arr.iter() {
         let product_except_current = total_product / element;
