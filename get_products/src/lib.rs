@@ -14,6 +14,9 @@
 
 pub fn get_products(arr: Vec<usize>) -> Vec<usize> {
     let mut result = Vec::new();
+    if arr.len() <= 1 {
+        return Vec::new();
+    }
     let total_product: usize = arr.iter().product();
     for &element in arr.iter() {
         let product_except_current = total_product / element;
@@ -27,4 +30,3 @@ fn main() {
     let output = get_products(arr);
     println!("{:?}", output);
 }
-
