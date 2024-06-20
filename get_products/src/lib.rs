@@ -13,20 +13,15 @@
 // Expected functions
 
 pub fn get_products(arr: Vec<usize>) -> Vec<usize> {
-    let mut result = Vec::new();
-    for (index, value) in arr.iter().enumerate() {
-        let mut product = 1;
-        for (index2, value2) in arr.iter().enumerate() {
-            if index!= index2 {
-                product *= *value2;
-            }
-        }
-        result.push(product);
+    let mut result = vec[];
+    let total_product: usize = arr.iter().product();
+    for &element in arr.iter() {
+        let product_except_current = total_product / element;
+        result.push(product_except_current);
     }
-    return result;
 
+    result
 }
-
 fn main() {
     let arr: Vec<usize> = vec![1, 7, 3, 4];
     let output = get_products(arr);
