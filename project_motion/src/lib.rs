@@ -26,36 +26,29 @@ impl ThrowObject {
 }
 
 impl Iterator for ThrowObject {
-    type Item = Option<ThrowObject>;
+    type Item = ThrowObject;
 
     fn next(&mut self) -> Option<Self::Item> {
-        // Calculate new position and velocity
         let g = 9.8; // Gravity constant
         let dt = 1.0; // Time step
 
-        // Update velocities
-        self.actual_velocity.x += self.init_velocity.x * dt;
-        self.actual_velocity.y += self.init_velocity.y * dt - g * dt;
-
         // Update positions
         self.actual_position.x += self.actual_velocity.x * dt;
-        self.actual_position.y += self.actual_velocity.y * dt;
+        self.actual_position.y += self.actual_velocity.y * dt - 0.5 * g * dt * dt;
 
-        // Check if the object has hit the ground
-        if self.actual_position.y <= 0.0 {
-            return None; // Object has reached the floor
-        }
+        // Update velocities
+        self.actual_velocity.y += -g * dt;
 
         // Increment time
         self.time += dt;
 
-        Some(Some(ThrowObject {
-            init_position: self.init_position.clone(),
-            init_velocity: self.init_velocity.clone(),
-            actual_position: self.actual_position.clone(),
-            actual_velocity: self.actual_velocity.clone(),
-            time: self.time,
-        }))
+        // Check if the object has hit the ground
+        if self.actual_position.y <= 0.0 {
+            self.actual_position.y = 0.0; // Ensure the position is exactly on the ground
+            return None; // Object has reached the floor
+        }
+
+        Some(self.clone())
     }
 }
 
